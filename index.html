@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Behance_Portfolio</title>
+
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .marginB15 {
+            margin-bottom: 15px;
+        }
+
+        .marginB30 {
+            margin-bottom: 30px;
+        }
+
+        body {
+            background: rgb(243, 243, 243);
+            color: #333;
+
+            width: 100vw;
+            margin: auto;
+        }
+
+        #app {
+            position: relative;
+
+            width: 100%;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            overflow: hidden;
+        }
+
+        .banner {
+            position: absolute;
+            top: 0;
+            z-index: -1;
+            overflow: hidden;
+            height: 200px;
+            width: 100vw;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            transform: rotate(-4deg) scale(1.2);
+        }
+
+        .banner_img {
+            height: 100%;
+        }
+
+        .creater {
+            width: 100%;
+            max-width: 900px;
+
+            padding: 30px;
+            margin-top: 135px;
+            /*120 135*/
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .creater_inner {
+            position: relative;
+            width: 100%;
+
+            padding: 5px 0;
+
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .inner_img {
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .inner_img img {
+            width: 100%;
+        }
+
+        .creater_avatar {
+            width: 100%;
+            max-width: 100px;
+
+            border-radius: 50%;
+            overflow: hidden;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 5px solid rgb(248, 248, 248);
+        }
+
+        .creater_avatar img {
+            width: 100%;
+        }
+
+        .creater_stats {
+            width: 100%;
+            max-width: 500px;
+
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            align-items: center;
+
+            font-size: 12px;
+        }
+
+        .creater_stats div {
+            width: 33%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .creater_stats .num {
+            font-size: 1.2rem;
+            font-weight: 600;
+            line-height: 2.2rem;
+        }
+
+        .creater_inf {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .creater_inf h3 {
+            font-size: 12px;
+        }
+
+        .creater_inf h1 {
+            font-size: 18px;
+        }
+
+        .creater_inf p {
+            font-size: 12px;
+        }
+
+        .creater_inf img {
+            border-radius: 50%;
+            margin-right: 15px;
+            display: none;
+        }
+
+        .appreciations {
+            position: absolute;
+            top: -35px;
+            right: 0px;
+            color: #cfd6e5;
+            color: rgb(173, 173, 173);
+            font-size: 1.3rem !important;
+        }
+
+        .projects {
+            width: 90%;
+            max-width: 700px;
+            padding: 2%;
+            margin: auto;
+        }
+
+        .projects_inner {
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+            align-items: center;
+
+            margin: auto;
+        }
+
+        .projects .project {
+            position: relative;
+            width: 45%;
+            /*45% 30*/
+            padding-bottom: 34.5%;
+            /*35% 23*/
+            height: 0;
+
+            margin: 1.66%;
+
+            border-radius: 5px;
+            overflow: hidden;
+            border: 1px solid #d7d7d7;
+        }
+
+        .project_img {
+            width: 100%;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .project_img img {
+            width: 100%;
+
+            transform: scale(1);
+            transition: 0.3s;
+        }
+
+        .project_img:hover img {
+            transform: scale(1.1);
+            cursor: pointer;
+        }
+
+        .project_name {
+            position: absolute;
+            width: 100%;
+            height: 35px;
+            bottom: 0;
+            /* background: rgba(255, 255, 255, 1); */
+            color: #333;
+            padding: 0 10px;
+
+            display: inline-flex;
+            justify-content: flex-start;
+            align-items: center;
+
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        footer {
+            height: 50px;
+            overflow: hidden;
+            width: 100vw;
+            margin-top: 50px;
+            background: #333;
+            color: white;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 12px;
+        }
+
+        footer img {
+            width: 100%;
+            filter: brightness(100%);
+        }
+
+        @media (max-width:380px) {
+            .projects .project {
+                width: 77%;
+                margin: 10px 10%;
+                padding-bottom: 60%;
+            }
+        }
+
+        .createrNav {
+            position: fixed;
+            top: 0;
+            width: 100vw;
+            height: 80px;
+            background: rgb(243, 243, 243);
+            /* border-bottom: 1px solid rgb(175, 175, 175); */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1;
+
+            opacity: 1;
+            transform: translateY(-80px);
+            transition: 0.5s;
+        }
+
+        .createrNav h1 {
+            font-size: 18px;
+        }
+
+        .createrNav p {
+            font-size: 12px;
+        }
+
+        .createrNav_inner {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+        }
+
+        .createrNav_inner .createrNav_inf {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .createrNav_inner .avatar {
+            border-radius: 50%;
+            margin-right: 15px;
+
+            border: 2px solid white;
+        }
+
+        .createrNav .bg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .createrNav .bg img {
+            height: 100%;
+            /* filter: opacity(0.2); */
+            filter: brightness(50%);
+        }
+
+        .fields {
+            display: flex;
+
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .field {
+            font-size: 12px;
+            background: #333;
+            color: white;
+            padding: 5px 10px;
+            margin: 0 5px 5px;
+            border-radius: 50px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="app">
+
+        <!-- <input type="text" v-model="creater" style="position: fixed; top:0; left:0; z-index: 99;"> -->
+
+        <div class="banner">
+            <img class="banner_img" :src="createrDetail['banner_image_url']" alt="">
+        </div>
+
+        <div class="createrNav">
+            <div class="createrNav_inner" style="margin-right: 15px;">
+                <div class="bg">
+                    <img :src="createrDetail['banner_image_url']" alt="">
+                </div>
+                <img class="avatar" :src="createrDetail['images']['50']" alt="">
+                <div class="createrNav_inf">
+                    <h1>{{createrDetail['first_name']}} {{createrDetail['last_name']}}</h1>
+                    <p>{{createrDetail['location']}}</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="creater">
+            <div class="creater_inner">
+                <div class="creater_avatar">
+                    <img :src="createrDetail['images']['138']" alt="">
+                </div>
+                <!--<div class="creater_stats">
+                    <div>
+                        <span class="num">{{shortNum(projects.length)}}</span>
+                        <span>作品</span>
+                    </div>
+                    <div>
+                        <span class="num">{{shortNum(createrDetail['stats']['followers'])}}</span>
+                        <span>粉絲</span>
+                    </div>
+                    <div>
+                        <span class="num">{{shortNum(createrDetail['stats']['following'])}}</span>
+                        <span>追蹤中</span>
+                    </div>
+                    <!-- <p>{{createrDetail['stats']['comments']}}</p> 
+                    <!-- <p>讚數<br>{{createrDetail['stats']['appreciations']}}</p> 
+                    <!-- <p>{{createrDetail['stats']['views']}}</p> 
+                </div>-->
+            </div>
+
+            <div class="creater_inner marginB15">
+                <!-- <div class="creater_inf">
+                    <img :src="createrDetail['images']['50']" alt="">
+                </div> -->
+                <div class="creater_inf">
+                    <p class="appreciations"><i class="far fa-thumbs-up"></i>
+                        {{shortNum(createrDetail['stats']['appreciations'])}}</p>
+                    <h1>{{createrDetail['first_name']}} {{createrDetail['last_name']}}</h1>
+                    <p>{{createrDetail['location']}}</p>
+                    <!-- <p>{{createrDetail['location']}}</p> -->
+                </div>
+            </div>
+
+            <div class="creater_inner marginB30">
+                <div class="fields">
+                    <div class="field" v-for="field in createrDetail['fields']">
+                        {{field}}
+                    </div>
+                </div>
+            </div>
+
+            <div class="creater_inner">
+                <div class="creater_stats">
+                    <div>
+                        <span class="num">{{shortNum(projects.length)}}</span>
+                        <span>作品</span>
+                    </div>
+                    <div>
+                        <span class="num">{{shortNum(createrDetail['stats']['followers'])}}</span>
+                        <span>粉絲</span>
+                    </div>
+                    <div>
+                        <span class="num">{{shortNum(createrDetail['stats']['following'])}}</span>
+                        <span>追蹤中</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="projects">
+            <div class="projects_inner">
+                <div class="project" v-for="(project,index) in projects">
+                    <a :href="project['url']" target="_blank">
+                        <div class="project_img">
+                            <img v-if="project['covers']['230'] != undefined" :src="project['covers']['230']" alt="">
+                            <img v-else :src="project['covers']['202']" alt="">
+                        </div>
+                        <!-- <div class="project_name">
+                        {{project['name']}}
+                    </div> -->
+                        <!-- <div class="project_fields">
+                        {{project['fields']}}
+                    </div> -->
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <span>© 2022 Kelvin.Liou All Rights Reserved.</span>
+            <!-- <img class="banner_img" :src="createrDetail['banner_image_url']" alt=""> -->
+        </footer>
+    </div>
+
+    <!-- Vue 3.0 cdn -->
+    <script src="https://unpkg.com/vue@next"></script>
+
+    <!-- vue router cdn -->
+    <script src="https://unpkg.com/vue-router@next"></script>
+
+    <script>
+        const _0x169a77 = _0x4342; function _0x12b0() { const _0x3e28bf = ['creater:', 'createWebHistory', '3753660xrUhYc', 'owners', '11805353cScPwh', '$route', 'createElement', 'length', 'id:', 'scrollY', 'style', '877489LrtPDc', 'query', '6kHhaad', 'floor', '3938004pLLcWt', 'translateY(-80px)', '/projects?client_id=XrTXvo7P59I8TcXEqP0DDRgxi6Jmx5Rd&callback=myCallback', 'script', 'addEventListener', 'createRouter', 'src', 'https://api.behance.net/v2/users/', 'sendRequest', 'translateY(0px)', 'getElementsByClassName', 'createrUrl', 'push', 'creater', '90oZBCmJ', 'transform', 'use', 'createrDetail', 'appendChild', '1411018GaHJSz', 'projects', '354208MtZlhy', 'log', 'mount', 'body', '#app', '3464607dahrDF', 'myCallback', 'scroll', 'username']; _0x12b0 = function () { return _0x3e28bf; }; return _0x12b0(); } (function (_0x597b93, _0x4d5fe6) { const _0x200e01 = _0x4342, _0x4a0efd = _0x597b93(); while (!![]) { try { const _0x217db9 = parseInt(_0x200e01(0xe2)) / 0x1 + parseInt(_0x200e01(0xcc)) / 0x2 + -parseInt(_0x200e01(0xd3)) / 0x3 + parseInt(_0x200e01(0xb9)) / 0x4 + parseInt(_0x200e01(0xd9)) / 0x5 + -parseInt(_0x200e01(0xe4)) / 0x6 * (parseInt(_0x200e01(0xdb)) / 0x7) + -parseInt(_0x200e01(0xce)) / 0x8 * (-parseInt(_0x200e01(0xc7)) / 0x9); if (_0x217db9 === _0x4d5fe6) break; else _0x4a0efd['push'](_0x4a0efd['shift']()); } catch (_0x1fc1b4) { _0x4a0efd['push'](_0x4a0efd['shift']()); } } }(_0x12b0, 0xe085b)); const router = VueRouter[_0x169a77(0xbe)]({ 'history': VueRouter[_0x169a77(0xd8)](), 'routes': [{ 'path': '/', 'props': _0x16c050 => { const _0xb19168 = _0x169a77; return { 'id': _0x16c050[_0xb19168(0xe3)]['id'] }; } }] }); let vm = Vue['createApp']({ 'data'() { return { 'creater': '', 'createrDetail': { 'banner_image_url': '', 'images': { '50': '', '100': '', '115': '', '138': '', '230': '', '276': '' }, 'username': '', 'location': '', 'stats': { 'appreciations': '', 'comments': '', 'followers': '', 'following': '', 'views': '' }, 'url': '' }, 'projects': [{ 'covers': { '115': '', '202': '', '230': '', '404': '', '808': '', 'max_808': '', 'original': '' }, 'features': [{ 'site': { 'app_icon': '', 'domain': '', 'icon': '', 'id': '', 'key': '', 'name': '', 'parent_id': '' } }], 'fields': [], 'name': '', 'owners': [{ 'banner_image_url': '', 'city': '', 'company': '', 'country': '', 'display_name': '', 'fields': [], 'id': '', 'first_name': '', 'last_name': '', 'images': { '50': '', '100': '', '115': '', '138': '', '230': '', '276': '' }, 'location': '', 'occupation': '', 'stats': { 'appreciations': '', 'comments': '', 'followers': '', 'following': '', 'views': '' }, 'url': '', 'username': '' }], 'stats': { 'appreciations': '', 'comments': '', 'views': '' }, 'url': '' }] }; }, 'watch': { '$route.query.id': function () { const _0x33baba = _0x169a77; this[_0x33baba(0xc6)] = this[_0x33baba(0xdc)][_0x33baba(0xe3)]['id'], console[_0x33baba(0xcf)](_0x33baba(0xdf) + this['$route']['query']['id']), console['log'](_0x33baba(0xd7) + this['creater']), this[_0x33baba(0xc1)](); } }, 'computed': { 'createrUrl': function () { const _0x16789f = _0x169a77; return _0x16789f(0xc0) + this[_0x16789f(0xc6)] + _0x16789f(0xbb); } }, 'methods': { 'sendRequest': function () { const _0x1ade12 = _0x169a77; let _0x4c9ecb = document[_0x1ade12(0xdd)](_0x1ade12(0xbc)); _0x4c9ecb[_0x1ade12(0xbf)] = this[_0x1ade12(0xc4)], document[_0x1ade12(0xd1)][_0x1ade12(0xcb)](_0x4c9ecb); }, 'myCallback': function (_0x13b940) { const _0x2ccd38 = _0x169a77; for (let _0x2e0e1c = 0x0; _0x2e0e1c < _0x13b940[_0x2ccd38(0xcd)][0x0][_0x2ccd38(0xda)][_0x2ccd38(0xde)]; _0x2e0e1c++) { _0x13b940[_0x2ccd38(0xcd)][0x0][_0x2ccd38(0xda)][_0x2e0e1c][_0x2ccd38(0xd6)] == this['creater'] && (this[_0x2ccd38(0xca)] = _0x13b940[_0x2ccd38(0xcd)][0x0][_0x2ccd38(0xda)][_0x2e0e1c]); } let _0x2cf103 = []; for (var _0xe2db6d = 0x0; _0xe2db6d < _0x13b940[_0x2ccd38(0xcd)][_0x2ccd38(0xde)]; _0xe2db6d++) { console[_0x2ccd38(0xcf)](_0x13b940[_0x2ccd38(0xcd)][_0xe2db6d]), _0x2cf103[_0x2ccd38(0xc5)](_0x13b940[_0x2ccd38(0xcd)][_0xe2db6d]); } this[_0x2ccd38(0xcd)] = _0x2cf103; }, 'show'() { alert('hello'); }, 'shortNum'(_0x40ba46) { const _0x5ebe7f = _0x169a77; if (_0x40ba46 > 0x2710) return Math[_0x5ebe7f(0xb8)](_0x40ba46 * 0xa / 0x2710) / 0xa + '萬'; else return _0x40ba46 > 0x3e8 ? Math[_0x5ebe7f(0xb8)](_0x40ba46 / 0x3e8) + ',' + _0x40ba46 % 0x3e8 : _0x40ba46; } }, 'beforeCreate'() { }, 'created'() { }, 'beforeMount'() { }, 'mounted'() { const _0x365082 = _0x169a77; this[_0x365082(0xc1)](); let _0x245bbf = document[_0x365082(0xc3)]('createrNav')[0x0]; window[_0x365082(0xbd)](_0x365082(0xd5), function () { const _0x54a23f = _0x365082; this[_0x54a23f(0xe0)] >= 0x12c ? _0x245bbf[_0x54a23f(0xe1)][_0x54a23f(0xc8)] = _0x54a23f(0xc2) : _0x245bbf[_0x54a23f(0xe1)]['transform'] = _0x54a23f(0xba); }); } })[_0x169a77(0xc9)](router)[_0x169a77(0xd0)](_0x169a77(0xd2)); function _0x4342(_0x5c3b4b, _0x71a795) { const _0x12b009 = _0x12b0(); return _0x4342 = function (_0x4342d7, _0x2ae4cb) { _0x4342d7 = _0x4342d7 - 0xb8; let _0x2542af = _0x12b009[_0x4342d7]; return _0x2542af; }, _0x4342(_0x5c3b4b, _0x71a795); } function myCallback(_0x147bdf) { const _0x37df9b = _0x169a77; vm[_0x37df9b(0xd4)](_0x147bdf); }
+    </script>
+</body>
+
+</html>
