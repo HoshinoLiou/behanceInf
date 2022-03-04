@@ -1,0 +1,278 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+$bColor: #f3f3f3;
+$fColor: #333333;
+
+@mixin displayFlex($dir: row, $jus: center, $ali: center) {
+    display: flex;
+    flex-direction: $dir;
+    justify-content: $jus;
+    align-items: $ali;
+}
+
+// marginB5, marginB10, marginB15...
+@for $i from 1 through 10 {
+    .marginB#{$i*5} {
+        margin-bottom: $i * 5 px;
+    }
+}
+
+// marginB5, marginB10, marginB15...
+// $j : 1;
+// @while $j <= 10 {
+//     .marginB#{$j*5} {
+//         margin-bottom: $j * 5 px;
+//     }
+//     $j: $j + 1;
+// }
+
+body {
+    background: $bColor;
+    color: $fColor;
+    width: 100vw;
+    margin: auto;
+    #app {
+        position: relative;
+        width: 100%;
+        @include displayFlex(column);
+        overflow: hidden;
+        .banner {
+            position: absolute;
+            top: 0;
+            z-index: -1;
+            overflow: hidden;
+            height: 200px;
+            width: 100vw;
+            @include displayFlex();
+            transform: rotate(-4deg) scale(1.2);
+            .banner_img {
+                height: 100%;
+            }
+        }
+        .creater {
+            width: 100%;
+            max-width: 900px;
+            padding: 30px;
+            margin-top: 135px;
+            /*120 135*/
+            @include displayFlex(column);
+            .creater_inner {
+                position: relative;
+                width: 100%;
+                padding: 5px 0;
+                @include displayFlex();
+                .creater_avatar {
+                    width: 100%;
+                    max-width: 100px;
+                    border-radius: 50%;
+                    overflow: hidden;
+                    @include displayFlex();
+                    border: 5px solid rgb(248, 248, 248);
+                    img {
+                        width: 100%;
+                    }
+                }
+                .creater_stats {
+                    width: 100%;
+                    max-width: 500px;
+                    @include displayFlex(row, space-around);
+                    font-size: 12px;
+                    div {
+                        width: 33%;
+                        @include displayFlex(column);
+                    }
+                    .num {
+                        font-size: 1.2rem;
+                        font-weight: 600;
+                        line-height: 2.2rem;
+                    }
+                }
+                .creater_inf {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    h3 {
+                        font-size: 12px;
+                    }
+                    h1 {
+                        font-size: 18px;
+                    }
+                    p {
+                        font-size: 12px;
+                    }
+                    img {
+                        border-radius: 50%;
+                        margin-right: 15px;
+                        display: none;
+                    }
+
+                    .appreciations {
+                        position: absolute;
+                        top: -35px;
+                        right: 0px;
+                        color: #cfd6e5;
+                        color: rgb(173, 173, 173);
+                        font-size: 1.3rem !important;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.inner_img {
+    width: 100%;
+    overflow: hidden;
+    img {
+        width: 100%;
+    }
+}
+
+.projects {
+    width: 90%;
+    max-width: 700px;
+    padding: 2%;
+    margin: auto;
+    .projects_inner {
+        width: 100%;
+        @include displayFlex(row, flex-start);
+        flex-wrap: wrap;
+        margin: auto;
+        .project {
+            position: relative;
+            width: 45%;
+            /*45% 30*/
+            padding-bottom: 34.5%;
+            /*35% 23*/
+            height: 0;
+            margin: 1.66%;
+            border-radius: 5px;
+            overflow: hidden;
+            border: 1px solid #d7d7d7;
+            .project_img {
+                width: 100%;
+                @include displayFlex(column);
+                img {
+                    width: 100%;
+                    transform: scale(1);
+                    transition: 0.3s;
+                }
+                &:hover img {
+                    transform: scale(1.1);
+                    cursor: pointer;
+                }
+            }
+            .project_name {
+                position: absolute;
+                width: 100%;
+                height: 35px;
+                bottom: 0;
+                /* background: rgba(255, 255, 255, 1); */
+                color: #333;
+                padding: 0 10px;
+
+                display: inline-flex;
+                justify-content: flex-start;
+                align-items: center;
+
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+        }
+    }
+}
+
+footer {
+    height: 50px;
+    overflow: hidden;
+    width: 100vw;
+    margin-top: 50px;
+    background: #333;
+    color: white;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+}
+
+footer img {
+    width: 100%;
+    filter: brightness(100%);
+}
+
+@media (max-width: 380px) {
+    .projects .project {
+        width: 77%;
+        margin: 10px 10%;
+        padding-bottom: 60%;
+    }
+}
+
+.createrNav {
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    height: 80px;
+    background: rgb(243, 243, 243);
+    /* border-bottom: 1px solid rgb(175, 175, 175); */
+    @include displayFlex();
+    z-index: 1;
+
+    opacity: 1;
+    transform: translateY(-80px);
+    transition: 0.5s;
+    h1 {
+        font-size: 18px;
+    }
+    p {
+        font-size: 12px;
+    }
+    .createrNav_inner {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        @include displayFlex();
+        color: white;
+        .createrNav_inf {
+            @include displayFlex(column);
+        }
+        .avatar {
+            border-radius: 50%;
+            margin-right: 15px;
+            border: 2px solid white;
+        }
+    }
+}
+
+.createrNav .bg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    @include displayFlex();
+    img {
+        height: 100%;
+        /* filter: opacity(0.2); */
+        filter: brightness(50%);
+    }
+}
+
+.fields {
+    @include displayFlex();
+    flex-wrap: wrap;
+    .field {
+        font-size: 12px;
+        background: #333;
+        color: white;
+        padding: 5px 10px;
+        margin: 0 5px 5px;
+        border-radius: 50px;
+    }
+}
